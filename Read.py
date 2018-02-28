@@ -35,12 +35,43 @@ with open('output2.utf8', mode='r', encoding='UTF-8') as f1, open('output.utf8',
     f2 = set(line.strip() for line in f2)
     write_data = open('output_diff.utf8', 'w', encoding='UTF-8')
     write_data2 = open('output2_filter.utf8', 'w', encoding='UTF-8')
+    list1 = []
+    list2 = []
     for line in f2:
         words = line.split(' ')
         for item in words:
+            list1.append(item)
             write_data.write(item+'\n')
     
     for line in f1:
         words = line.split(' ')
         for item in words:
+            list2.append(item)
             write_data2.write(item+'\n')
+
+
+rest = []
+list3 = []
+ache = 0
+nai = 0
+
+write_final = open('output_final.utf8', 'w', encoding='UTF-8')
+
+print(len(list1))
+print(len(list2))
+
+#list3 = set(list1) & set(list2)
+#print len(list3)
+
+for word in list1:
+    if word is not ' ' or word is not u'\n' or word is not '':
+        if word in list2:
+            list3.append(word)
+            write_final.write(word+'\n')
+        else:
+            rest.append(word)
+
+
+
+print(len(rest))
+print(len(list3))

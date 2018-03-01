@@ -67,9 +67,11 @@ for word in list1:
     if word is not ' ' or word is not u'\n' or word is not '':
         if word in list2:
             list3.append(word)
-            write_final.write(word+'\n')
+            #write_final.write(word+'\n')
         else:
-            rest.append(word)
+            if word not in rest and not any( word in s for s in list2):
+                rest.append(word)
+                write_final.write(word+'\n')
 
 
 
